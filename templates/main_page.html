@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="../static/main_page.css">
+</head>
+<body>
+<h1>Accounts</h1>
+<form action="#" method="post">
+  <label>Создать новый счет</label>
+  <select name="select_currency">
+    <option>RUB</option>
+    <option>USD</option>
+    <option>EUR</option>
+  </select>
+  <br><br>
+  <input type="submit">
+</form>
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Balance</th>
+        <th>Currency</th>
+    </tr>
+    {% for account in accounts %}
+    <tr onclick = "window.location='/{{account.id}}'">
+        <td>{{account.id}}</td>
+        <td 
+        {% if account.currency == 'RUB' and account.balance >= 400 %} 
+            class="td-good"
+        {% elif account.currency == 'RUB' and account.balance <= 100 %}
+            class = "td-bad"
+        {% elif account.currency == 'USD' and account.balance >= 150 %}
+            class = "td-good"
+        {% elif account.currency == 'USD' and account.balance <= 50 %}
+            class = "td-bad"
+        {% elif account.currency == 'EUR' and account.balance >= 50 %}
+            class = "td-good"
+        {% elif account.currency == 'EUR' and account.balance <= 20 %}
+            class = "td-bad"
+        {% endif %}>{{account.balance}}</td>
+        <td>{{account.currency}}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

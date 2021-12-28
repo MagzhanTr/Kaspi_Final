@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/main_page.css">
+    <title>Account Page</title>
+</head>
+<body>
+<table class="account_info">
+    <tr>
+        <th>ID</th>
+        <th>Баланс</th>
+        <th>Валюта</th>
+    </tr>
+    <tr>
+        <td>{{account.id}}</td>
+        <td>{{account.balance}}</td>
+        <td>{{account.currency}}</td>
+    </tr>
+</table>
+<form action="#" method="post">
+  <select name="select_operation">
+    <option>Перевод</option>
+    <option>Пополнение</option>
+  </select>
+  <select name="select_currency">
+    <option>RUB</option>
+    <option>USD</option>
+    <option>EUR</option>
+  </select>
+  <p>Сумма: <input type="text" name="balance"></p>
+  <p>Получатель: <input type="text" name="target"></p>
+  <input type="submit">
+</form>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Отправитель</th>
+        <th>Получатель</th>
+        <th>Сумма</th>
+        <th>Валюта</th>
+        <th>Дата</th>
+        <th>Операция</th>
+    </tr>
+    {% for transaction in transactions %}
+    <tr>
+        <td>{{transaction.id}}</td>
+        <td>{{transaction.source_account[0].id}}</td>
+        <td>{{transaction.target_account[0].id}}</td>
+        <td>{{transaction.amount}}</td>
+        <td>{{transaction.currency}}</td>
+        <td>{{transaction.date}}</td>
+        <td>{{transaction.operation}}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
